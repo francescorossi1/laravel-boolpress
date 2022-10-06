@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\support\Str;
 
 class PostController extends Controller
@@ -47,14 +48,18 @@ class PostController extends Controller
         $post = new Post();
 
         $data = $request->all();
-
         $post->fill($data);
         $post->slug = Str::slug($post->title, '-');
-
         $post->user_id = Auth::id();
+
+        // TODO Validate
+        if(array_key_exists('image', $data)) {
+        $link = Storage::put('post_imgs', $data['image']);
+        $post->image = $link;
+        }
         $post->save();
 
-        if($data['tags']) {
+        if(array_key_exists('tags', $data)) {
             $post->tags()->attach($data['tags']);
         }
 
