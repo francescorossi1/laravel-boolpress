@@ -14,7 +14,9 @@
             </div>
 
             <div class="clearfix">
-                <img src="{{ asset('storage/' . $post->image) }}" alt="post image preview" class="float-left mr-3 mb-3 img-fluid">
+                @if($post->image)
+                <img src="{{ asset('storage/' . $post->image) }}" alt="post image preview" width="100px" class="float-left mr-3 mb-3 img-fluid">
+                @endif
                 <p class="h4">{{ $post->content }}</p>
             </div>
             <p>

@@ -12,6 +12,7 @@
                 <th scope="col">Tags</th>
                 <th scope="col">Data Creazione</th>
                 <th scope="col">Ultima Modifica</th>
+                <th scope="col">Anteprima</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -46,6 +47,11 @@
                 </td>
                 <td>{{ $post->created_at }}</td>
                 <td>{{ $post->updated_at }}</td>
+                @if($post->image)
+                <td><img src="{{ asset('storage/'.$post->image) }}" alt="preview" class="img-fluid"></td>
+                @else
+                <td><img src="{{ asset('storage/posts/placeholder.png') }}" alt="placeholder" class="img-fluid"></td>
+                @endif
                 <td class="d-flex">
                     <a href="{{ route('admin.posts.show', $post) }}" class="btn btn-primary">Dettagli</a>
                     <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-warning ml-2">Modifica</a>
