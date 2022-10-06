@@ -66,7 +66,7 @@ class PostController extends Controller
             $post->tags()->attach($data['tags']);
         }
 
-        $new_email = new TestMail();
+        $new_email = new TestMail($post);
         $receiver = Auth::user()->email;
         Mail::to($receiver)->send($new_email);
 
