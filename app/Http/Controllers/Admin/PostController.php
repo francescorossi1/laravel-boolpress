@@ -54,9 +54,10 @@ class PostController extends Controller
 
         // TODO Validate
         if(array_key_exists('image', $data)) {
-        $link = Storage::put('post_imgs', $data['image']);
+        $link = Storage::put('posts', $data['image']);
         $post->image = $link;
         }
+        
         $post->save();
 
         if(array_key_exists('tags', $data)) {
