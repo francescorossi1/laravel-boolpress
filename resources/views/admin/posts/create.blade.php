@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Crea un nuovo Post</h1>
-    <form action="{{ route('admin.posts.store') }}" enctype="multipart/data" method="POST">
+    <form action="{{ route('admin.posts.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
 
         <!-- Title -->
