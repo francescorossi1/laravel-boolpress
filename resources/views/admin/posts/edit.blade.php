@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Modifica Post</h1>
-    <form action="{{ route('admin.posts.update', $post) }}" method="POST">
+    <form action="{{ route('admin.posts.update', $post) }}" enctype="multipart/form-data" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -41,9 +41,11 @@
             <label for="content">Contenuto</label>
             <textarea class="form-control" rows="8" id="content" name="content">{{ old('content', $post->content) }}</textarea>
         </div>
+
+        <!-- Image -->
         <div class="form-group">
             <label for="image">Immagine</label>
-            <input type="url" class="form-control" id="image" name="image" value="{{ old('image', $post->image) }}">
+            <input type="file" id="image" name="image">
         </div>
         <button type="submit" class="btn btn-success">Invia</button>
         <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary ml-2">Torna Indietro</a>
