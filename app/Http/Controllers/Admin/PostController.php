@@ -105,6 +105,11 @@ class PostController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->title, '-');
         $post->user_id = Auth::id();
+        if(array_key_exists('image', $data)) {
+            if($post->image) Storage::delete($post->image);
+            $link = Storage::put('posts', $data['image']);
+            $post->image = $link;
+            }
         $post->update($data);
 
         if($data['tags']) $post->tags()->sync($data['tags']);
