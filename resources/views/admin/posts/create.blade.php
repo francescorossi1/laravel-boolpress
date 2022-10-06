@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Crea un nuovo Post</h1>
-    <form action="{{ route('admin.posts.store') }}" method="POST">
+    <form action="{{ route('admin.posts.store') }}" enctype="multipart/data" method="POST">
         @csrf
 
         <!-- Title -->
@@ -44,10 +44,10 @@
             <textarea class="form-control" rows="8" id="content" name="content">{{ old('content') }}</textarea>
         </div>
 
-        <!-- Url -->
+        <!-- Image -->
         <div class="form-group">
             <label for="image">Immagine</label>
-            <input type="url" class="form-control" id="image" name="image" value="{{ old('image') }}">
+            <input type="file" id="image" name="image">
         </div>
 
         <!-- Buttons -->
